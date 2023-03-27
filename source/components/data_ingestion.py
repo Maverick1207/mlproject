@@ -22,7 +22,7 @@ class DataIngestion:
         logging.info("Entered the data ingestion method or component")
         
         try:
-            df=pd.read_csv('notebook\data\stud.csv')
+            df=pd.read_csv('notebook\data\stud.csv') ## data to be reade any source such as api and mongoDB
             logging.info('Reade the dataset as dataframe')
             
             os.makedirs(os.path.dirname(self.ingestion_Config.train_data_path),exist_ok=True)## combining directory path
@@ -32,9 +32,9 @@ class DataIngestion:
             logging.info("Train test split initiated")
             train_set,test_set=train_test_split(df,test_size=0.2,random_state=42)
             
-            train_set.to_csv(self.ingestion_Config.train_data_path,index=False,header=True)
+            train_set.to_csv(self.ingestion_Config.train_data_path,index=False,header=True) # type: ignore
             
-            test_set.to_csv(self.ingestion_Config.test_data_path,index=False,header=True)
+            test_set.to_csv(self.ingestion_Config.test_data_path,index=False,header=True) # type: ignore
             
             logging.info("Ingestion of data is completed")
             
@@ -45,7 +45,7 @@ class DataIngestion:
                 
             )
         except Exception as e:
-            raise Custom_Exception(e,sys)
+            raise Custom_Exception(e,sys) # type: ignore
         
         
 if __name__=="__main__":
